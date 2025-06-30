@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package serverpb;
+
+option go_package = "./pb/serverpb";
+
+
+service Server {
+    rpc SendTransaction(SendRequest) returns(SendResponse) {};
+
+    rpc GetHealth(HealthRequest) returns(HealthResponse) {};
+}
+
+message SendRequest {
+    string transaction = 1;
+    string mode = 2;
+}
+
+message SendResponse {
+    string signature = 1;
+}
+
+message HealthRequest {
+}
+
+message HealthResponse {
+    string status = 1;
+}

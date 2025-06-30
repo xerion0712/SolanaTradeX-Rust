@@ -1,0 +1,24 @@
+[package]
+name = "solana-trader-client-rust"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]] # Bin to run the HelloWorld gRPC client
+name = "tx-client"
+path = "src/client.rs"
+
+[dependencies]
+tonic = "0.13"
+prost = "0.13"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+
+solana-client = "2.2.1"
+solana-program = "2.2.1"
+solana-sdk = "2.2.1"
+
+base64 = "0.21"
+bincode = "1.3"
+
+rand = "0.8.5"
+[build-dependencies]
+tonic-build = "0.13"
