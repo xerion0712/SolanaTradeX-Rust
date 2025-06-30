@@ -13,9 +13,9 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
    `cd solana-trader-client-rust`
 
 3. **Download dependencies**
-   `cargo build`
+   install [protoc](https://protobuf.dev/installation/#package-manager), then `cargo build`
 
-4. **Edit example/main.go**
+4. **Edit src/client.rs**
 
 	```
 	// BlockRazor relay endpoint address
@@ -33,5 +33,5 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
 	let tipamount  = 1_000_000;
 	```
 
-5. **Run example**
+6. **Run example**
   `cargo run`
