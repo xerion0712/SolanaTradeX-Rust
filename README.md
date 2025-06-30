@@ -7,12 +7,15 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
 # Quickstart
 
 1. **Download git repository**
+
    `git clone https://github.com/BlockRazorinc/solana-trader-client-rust.git`
 
 2. **Change directory**
+
    `cd solana-trader-client-rust`
 
 3. **Download dependencies**
+
    install [protoc](https://protobuf.dev/installation/#package-manager), then `cargo build`
 
 4. **Edit src/client.rs**
@@ -33,5 +36,6 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
 	let tipamount  = 1_000_000;
 	```
 
-6. **Run example**
+5. **Run example**
+   
   `cargo run`
