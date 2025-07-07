@@ -36,7 +36,10 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
 	let tipamount  = 1_000_000;
 	```
 
-5. **Run example**
+5. **Run mode-fast example**
    
-   `cargo run`
+   `cargo run --bin mode-fast`
 
+6. **Run mode-sandwichMitigation example**
+   
+   `cargo run --bin mode-sandwichMitigation`

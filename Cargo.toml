@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]] # Bin to run the HelloWorld gRPC client
-name = "tx-client"
-path = "src/client.rs"
+name = "mode-fast"
+path = "src/mode_fast.rs"
+
+[[bin]] # Bin to run the HelloWorld gRPC client
+name = "mode-sandwichMitigation"
+path = "src/mode_sandwichMitigation.rs"
 
 [dependencies]
 tonic = "0.13"
