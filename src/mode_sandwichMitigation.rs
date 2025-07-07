@@ -31,7 +31,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // send mode
     let mode = "sandwichMitigation";
-
+	// safeWindow
+    let safe_window = Some(5);
     // tip amount
     let tipamount = 1_000_000;
 
@@ -79,7 +80,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // tx base64
     let serialized = bincode::serialize(&tx)?;
     let base64_encoded = general_purpose::STANDARD.encode(serialized);
-    let safe_window = Some(5);
     let mut tx_request: tonic::Request<SendRequest> = tonic::Request::new(SendRequest {
         transaction: base64_encoded,
         mode: mode.to_string(),

@@ -28,10 +28,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let authkey = "";
     // relace your private key(base58)
     let privatekey = "";
-    
+
     // send mode
     let mode = "fast";
-
+    // safeWindow
+    let safe_window = None;
     // tip amount
     let tipamount = 1_000_000;
 
@@ -82,7 +83,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut tx_request: tonic::Request<SendRequest> = tonic::Request::new(SendRequest {
         transaction: base64_encoded,
         mode: mode.to_string(),
-        safe_window: None,
+        safe_window,
     });
     tx_request
         .metadata_mut()
