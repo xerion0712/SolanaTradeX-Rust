@@ -18,7 +18,7 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
 
    install [protoc](https://protobuf.dev/installation/#package-manager), then `cargo build`
 
-4. **Edit src/client.rs**
+4. **Edit src/mode_fast.rs or src/mode_sandwichMitigation.rs**
 
 	```
 	// BlockRazor relay endpoint address
@@ -30,7 +30,7 @@ see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/
     // relace your private key(base58)
 	let privatekey = "";
 	// send mode
-    let mode = "fast";
+    let mode = "";
 
     // tip amount
 	let tipamount  = 1_000_000;
