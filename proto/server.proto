@@ -15,6 +15,7 @@ message SendRequest {
     string transaction = 1;
     string mode = 2;
     optional int32 safeWindow = 3;
+    bool revertProtection = 4;
 }
 
 message SendResponse {

@@ -4,11 +4,11 @@ use rand::Rng;
 use server::server_client::ServerClient;
 use server::{HealthRequest, SendRequest};
 use solana_client::rpc_client::RpcClient;
-use solana_program::system_instruction;
 use solana_sdk::commitment_config::CommitmentConfig;
 use solana_sdk::pubkey::Pubkey;
 use solana_sdk::signature::{Keypair, Signer};
 use solana_sdk::transaction::Transaction;
+use solana_system_interface::instruction::transfer;
 use std::error::Error;
 use std::str::FromStr;
 use tonic::metadata::AsciiMetadataValue;
@@ -26,13 +26,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mainnetrpc = "";
     // replace your authKey
     let authkey = "";
-    // relace your private key(base58)
+    // relace your private key
     let privatekey = "";
-
     // send mode
-    let mode = "fast";
-    // safeWindow
-    let safe_window = None;
+    let mode = "sandwichMitigation";
+    // safe window
+    let safe_window = Some(5);
+    // revert protection
+    let revert_protection = false;
+
     // tip amount
     let tipamount = 1_000_000;
 
@@ -80,7 +82,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let rpcurl = String::from(mainnetrpc);
     let connection = RpcClient::new_with_commitment(rpcurl, CommitmentConfig::confirmed());
 
-    let ix = system_instruction::transfer(&frompubkey, &topubkey, tipamount);
+    let ix = transfer(&frompubkey, &topubkey, tipamount);
     let recent_blockhash = connection
         .get_latest_blockhash()
         .expect("Failed to get recent blockhash.");
@@ -93,7 +95,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut tx_request: tonic::Request<SendRequest> = tonic::Request::new(SendRequest {
         transaction: base64_encoded,
         mode: mode.to_string(),
-        safe_window,
+        safe_window: safe_window,
+        revert_protection: revert_protection,
     });
     tx_request
         .metadata_mut()
