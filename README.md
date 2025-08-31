@@ -1,6 +1,6 @@
 # SolanaTradeX-Rust
 
-A high-performance trading client for Solana written in Rust.  
+A high performance trading client for Solana written in Rust.  
 
 ---
 
