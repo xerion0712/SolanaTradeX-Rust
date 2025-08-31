@@ -1,7 +1,6 @@
 # SolanaTradeX-Rust
 
 A high-performance trading client for Solana written in Rust.  
-This client integrates with BlockRazor relay and supports transaction execution via gRPC and HTTP in both fast mode and sandwichMitigation mode.
 
 ---
 
