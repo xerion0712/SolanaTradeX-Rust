@@ -1,147 +1,139 @@
-# Solana-trader-client-rust
-example for solana-trader-client in Rust
+# 🚀 SolanaTradeX-Rust
 
-# Document
-see [document](https://blockrazor.gitbook.io/blockrazor/solana/send-transaction/rust)
+A high-performance **trading client for Solana** written in Rust.  
+Built with **BlockRazor relay integration**, this client enables developers to send transactions via **gRPC** and **HTTP** with support for **fast mode** and **sandwichMitigation mode**.  
 
-# Quickstart
+---
 
-1. **Download git repository**
+## 📖 Documentation
+Full documentation available at: [BlockRazor Docs](https://blockrazor.xyz/docs)
 
-   `git clone https://github.com/BlockRazorinc/solana-trader-client-rust.git`
+---
 
-2. **Change directory**
+## ⚡ Quickstart
 
-   `cd solana-trader-client-rust`
+### 1. Clone the Repository
+```bash
+git clone https://github.com/BlockRazorinc/solana-tradex-rust.git
+cd solana-tradex-rust
+````
 
-3. **Download dependencies**
+### 2. Install Dependencies
 
-   install [protoc](https://protobuf.dev/installation/#package-manager), then `cargo build`
+* Install [protoc](https://grpc.io/docs/protoc-installation/)
+* Build the project:
 
-4. **Edit src/mode_grpc_fast.rs**
+```bash
+cargo build
+```
 
-	```
-	// BlockRazor relay endpoint address
-    let blzendpoint = "http://frankfurt.solana-grpc.blockrazor.xyz:80";
-    // replace your solana rpc endpoint
-	let mainnetrpc = "";
-    // replace your authKey
-    let authkey = "";
-    // relace your private key(base58)
-	let privatekey = "";
-	// send mode
-    let mode = "";
+---
 
-    // tip amount
-	let tipamount  = 1_000_000;
-	```
+## 🔧 Configuration
 
-5. **Run mode-grpc-fast example**
-   
-   `cargo run --bin mode-grpc-fast`
+Edit the source files before running examples:
 
-# GRPC
+### gRPC — Fast Mode
 
-## fast mode
+`src/mode_grpc_fast.rs`
 
-1. **Edit src/mode_grpc_fast.rs**
+```rust
+let blzendpoint = "http://frankfurt.solana-grpc.blockrazor.xyz:80"; // Relay endpoint
+let mainnetrpc = "";     // Your Solana RPC endpoint
+let authkey = "";        // Your Auth Key
+let privatekey = "";     // Your wallet private key (base58)
+let mode = "";           // Send mode
+let tipamount  = 1_000_000;
+```
 
-	```
-	// BlockRazor relay endpoint address
-    let blzendpoint = "http://frankfurt.solana-grpc.blockrazor.xyz:80";
-    // replace your solana rpc endpoint
-	let mainnetrpc = "";
-    // replace your authKey
-    let authkey = "";
-    // relace your private key(base58)
-	let privatekey = "";
-	// send mode
-    let mode = "";
+Run:
 
-    // tip amount
-	let tipamount  = 1_000_000;
-	```
+```bash
+cargo run --bin mode-grpc-fast
+```
 
-2. **Run mode-grpc-fast example**
-   
-   `cargo run --bin mode-grpc-fast`
+---
 
-## sandwichMitigation mode
+### gRPC — Sandwich Mitigation
 
-1. **Edit src/mode_grpc_sandwichMitigation.rs**
+`src/mode_grpc_sandwichMitigation.rs`
 
-	```
-	 // BlockRazor relay endpoint address
-    let blzendpoint = "http://frankfurt.solana-grpc.blockrazor.xyz:80";
-    // replace your solana rpc endpoint
-    let mainnetrpc = "";
-    // replace your authKey
-    let authkey = "";
-    // relace your private key
-    let privatekey = "";
-    // send mode
-    let mode = "sandwichMitigation";
-    // safe window
-    let safe_window = Some(5);
-    // revert protection
-    let revert_protection = false;
-	```
+```rust
+let blzendpoint = "http://frankfurt.solana-grpc.blockrazor.xyz:80";
+let mainnetrpc = "";
+let authkey = "";
+let privatekey = "";
+let mode = "sandwichMitigation";
+let safe_window = Some(5);
+let revert_protection = false;
+```
 
-2. **Run mode-grpc-sandwichMitigation example**
-   
-   `cargo run --bin mode-grpc-sandwichMitigation`
+Run:
 
+```bash
+cargo run --bin mode-grpc-sandwichMitigation
+```
 
+---
 
-# HTTP
+### HTTP — Fast Mode
 
-## fast mode
+`src/mode_http_fast.rs`
 
-1. **Edit src/mode_http_fast.rs**
+```rust
+let http_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/sendTransaction";
+let health_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/health";
+let mainnetrpc = "";
+let authkey = "";
+let privatekey ="";
+let publickey = ""; // Target public key
+```
 
-	```
-	let http_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/sendTransaction";
-   let health_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/health";
-   let mainnetrpc = "";
-   // replace your authKey
-   let authkey = "";
-   // relace your private key
-   let privatekey ="";
-   // relace your target public key
-   let publickey = "";
-	```
+Run:
 
-2. **Run mode-http-fast example**
-   
-   `cargo run --bin mode-http-fast`
+```bash
+cargo run --bin mode-http-fast
+```
 
-## sandwichMitigation mode
+---
 
-1. **Edit src/mode_http_sandwichMitigation.rs**
+### HTTP — Sandwich Mitigation
 
-	```
-	 // Configuration values
-    let http_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/sendTransaction";
-    let health_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/health";
-    let mainnetrpc = "";
-    // replace your authKey
-    let authkey = "";
-    // relace your private key
-    let privatekey = "";
-    // relace your target public key
-    let publickey = "";
-    // transaction amount
-    let amount: u64 = 200_000;
-    // tip amount
-    let tipamount: u64 = 1_000_000;
-    // safe window
-    let safe_window: u32 = 5;
-    // revert protection
-    let revert_protection = false;
-    // send mode
-    let mode = "sandwichMitigation";
-	```
+`src/mode_http_sandwichMitigation.rs`
 
-2. **Run mode-http-sandwichMitigation example**
-   
-   `cargo run --bin mode-http-sandwichMitigationn`
+```rust
+let http_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/sendTransaction";
+let health_endpoint = "http://frankfurt.solana.blockrazor.xyz:443/health";
+let mainnetrpc = "";
+let authkey = "";
+let privatekey = "";
+let publickey = ""; 
+let amount: u64 = 200_000;
+let tipamount: u64 = 1_000_000;
+let safe_window: u32 = 5;
+let revert_protection = false;
+let mode = "sandwichMitigation";
+```
+
+Run:
+
+```bash
+cargo run --bin mode-http-sandwichMitigation
+```
+
+---
+
+## 🛡️ Security Notes
+
+* Always keep your **authKey** and **private key** secure.
+* Use environment variables or secret managers instead of hardcoding sensitive data.
+* Test in devnet before deploying to mainnet.
+
+---
+
+## 📜 License
+
+MIT License © BlockRazor Inc.
+
+👉 Do you want me to also make a **developer-oriented version** of the README (with Cargo features, contribution guide, and tests), or keep it **trader-user focused** like above?
+```
